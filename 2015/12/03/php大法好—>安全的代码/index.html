@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      PHP大法好—&gt;安全的代码 | sixwhale&#39;s pages
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="sixwhale">
+    
+    
+      <meta name="description" content="0x00 首先目前在深入的学习PHP中 自己是个学安全的 所以对于代码的安全较为敏感 网站的的漏洞源于代码的漏洞 白盒狗专注代码漏洞挖掘30年
+学好代码审计的关键也是写好代码的关键:
+了解恶意用户要从哪些入口攻击整个框架 
+一切输入都是有害的
+不要信任任何一个用户
+代码的逻辑
+
+0x01 过滤输入a.验证提交值是否为期望值或者允许值&amp;lt;html&amp;gt;&amp;lt;form action=&quot;&quot; me">
+    
+
+    <meta name="description" content="0x00 首先目前在深入的学习PHP中 自己是个学安全的 所以对于代码的安全较为敏感 网站的的漏洞源于代码的漏洞 白盒狗专注代码漏洞挖掘30年
+学好代码审计的关键也是写好代码的关键:
+了解恶意用户要从哪些入口攻击整个框架 
+一切输入都是有害的
+不要信任任何一个用户
+代码的逻辑
+
+0x01 过滤输入a.验证提交值是否为期望值或者允许值&amp;lt;html&amp;gt;&amp;lt;form action=&quot;&quot; me">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP大法好—>安全的代码 | sixwhale's pages">
+<meta property="og:url" content="http://yoursite.com/2015/12/03/php大法好—>安全的代码/index.html">
+<meta property="og:site_name" content="sixwhale's pages">
+<meta property="og:description" content="0x00 首先目前在深入的学习PHP中 自己是个学安全的 所以对于代码的安全较为敏感 网站的的漏洞源于代码的漏洞 白盒狗专注代码漏洞挖掘30年
+学好代码审计的关键也是写好代码的关键:
+了解恶意用户要从哪些入口攻击整个框架 
+一切输入都是有害的
+不要信任任何一个用户
+代码的逻辑
+
+0x01 过滤输入a.验证提交值是否为期望值或者允许值&amp;lt;html&amp;gt;&amp;lt;form action=&quot;&quot; me">
+<meta property="og:updated_time" content="2016-02-16T07:45:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP大法好—>安全的代码 | sixwhale's pages">
+<meta name="twitter:description" content="0x00 首先目前在深入的学习PHP中 自己是个学安全的 所以对于代码的安全较为敏感 网站的的漏洞源于代码的漏洞 白盒狗专注代码漏洞挖掘30年
+学好代码审计的关键也是写好代码的关键:
+了解恶意用户要从哪些入口攻击整个框架 
+一切输入都是有害的
+不要信任任何一个用户
+代码的逻辑
+
+0x01 过滤输入a.验证提交值是否为期望值或者允许值&amp;lt;html&amp;gt;&amp;lt;form action=&quot;&quot; me">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for sixwhale&#39;s pages"><img src="/images/avatar.jpg" width="80" alt="sixwhale&#39;s pages logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">sixwhale&#39;s pages</a></h1>
+
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          不会写代码的公关不是好黑客_prpr_(ฅ&#39;ω&#39;ฅ)
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">blog</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">me</a></li>
+              
+                
+                <li class="navigation__item"><a href="/blogroll" title="" class="">links</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/sixwha1e" target="_blank">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2015-12-03" class="post-meta__date date">2015-12-03</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              
+            </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">PHP大法好—&gt;安全的代码</h1>
+    </header>
+
+    <section class="post">
+      <h2 id="0x00_首先">0x00 首先</h2><p>目前在深入的学习PHP中 自己是个学安全的 所以对于代码的安全较为敏感 网站的的漏洞源于代码的漏洞 <strong>白盒狗专注代码漏洞挖掘30年</strong></p>
+<h4 id="学好代码审计的关键也是写好代码的关键:">学好代码审计的关键也是写好代码的关键:</h4><ul>
+<li>了解恶意用户要从哪些入口攻击整个框架 </li>
+<li>一切输入都是有害的</li>
+<li>不要信任任何一个用户</li>
+<li>代码的逻辑</li>
+</ul>
+<h2 id="0x01_过滤输入">0x01 过滤输入</h2><h4 id="a-验证提交值是否为期望值或者允许值">a.验证提交值是否为期望值或者允许值</h4><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;<span class="keyword">form</span> action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"radio"</span> name=<span class="string">"gender"</span> value=<span class="string">"Male"</span>&gt;Male&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"radio"</span> name=<span class="string">"gender"</span> value=<span class="string">"Female"</span>&gt;Female&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"submit"</span>&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">&lt;/<span class="keyword">form</span>&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">(a):</span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$_POST</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"The user's gender is "</span>.<span class="variable">$_POST</span>[<span class="string">'gender'</span>].<span class="string">".&lt;br/&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line">(b):</span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$_POST</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">switch</span> (<span class="variable">$_POST</span>[<span class="string">'gender'</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'Male'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'Female'</span>:</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"The user's gender is "</span>.<span class="variable">$_POST</span>[<span class="string">'gender'</span>].<span class="string">".&lt;br/&gt;"</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"Invalid input value for gender specified.&lt;br/&gt;"</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>比较一下(a)(b)两种后台验证 (b)显然确保了正确值 对于处理数据方面显然很重要</p>
+<h4 id="b-确认提交类型是否为允许类型">b.确认提交类型是否为允许类型</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"><span class="variable">$number</span>_of_nights = (int)$_POST[’num_nights’];</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$num</span>_of_nights == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">     echo “Error: Invalied number of nights for the room”;</span><br><span class="line">     exit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种不仅能确认正确的输入 也可以改进系统的安全</p>
+<h4 id="c-输入数据库的数据">c.输入数据库的数据</h4><ul>
+<li>输入必须使用<code>addslashes()</code>函数 </li>
+<li><code>stripslashes()</code>用来返回数据的原始形式</li>
+<li>php.ini文件中开启<code>magic_quotes_gpc</code><strong>(格式化GET POST和cookie变量)</strong>和<code>magic_quotes_runtime</code><strong>(格式化进入数据库的数据)</strong> 自动添加和过滤斜杠</li>
+</ul>
+<h4 id="d-其他恶意输入">d.其他恶意输入</h4><ul>
+<li>当用户传递数据给<code>system()</code>和<code>exec()</code>时 必须使用<code>escapeshellcmd()</code>避免任何恶意用户运行系统命令<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">	<span class="variable">$a</span> = escapeshellcmd(<span class="variable">$_GET</span>[<span class="string">'id'</span>]); <span class="comment">//1.php?id=sixwhale;ls</span></span><br><span class="line">	<span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">'id'</span>];</span><br><span class="line">	system(<span class="string">"echo $a"</span>);<span class="comment">//结果(1)</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;p&gt;"</span>;</span><br><span class="line">	system(<span class="string">"echo $b"</span>);<span class="comment">//结果(2)</span></span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line"></span><br><span class="line">结果(1): sixwhale;ls</span><br><span class="line">结果(2): sixwhale 1.php(遍历当前目录下所有文件)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>;</code>在shell里是分割命令的作用 所以可想而知 只要改变<code>;</code>后的值就可以导致很多命令注入</p>
+<ul>
+<li><code>strip_tags()</code>去掉HTML和PHP标记 避免恶意脚本植入</li>
+</ul>
+<h2 id="0x02_转义输出">0x02 转义输出</h2><p>最常见的就是插入恶意的HTML代码 使用<code>htmlspecialchars()</code>或者<code>htmlentities()</code>函数</p>
+<p><strong>……</strong></p>
+<h2 id="0x03_(//∀//)">0x03 (//∀//)</h2><p>今天看到了PHP与web安全的部分 虽然之前在网上了解过 实践中也有接触 但是感觉还是自己总结笔记印象比较深刻(毕竟还是希望在博客里写一些对自己有用的东西!!!) 只写了一部分 不定期更新中 希望不要吐槽啦<strong>(இдஇ; )</strong></p>
+
+    </section>
+
+    
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'sixwhale'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015-2016 | ❤ <a href="mailto:wjsixwhale@gmail.com">sixwhale </a></span>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+    });
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) {
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500;
+      scrollElem.hide();
+      $(window).scroll(function () {
+        var scrollTop = $(document).scrollTop();
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in
+        }else{
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!--  google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69756007-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258121687'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258121687' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      PHP集成环境搭建—&gt;令人心碎的MAMP | sixwhale&#39;s pages
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="sixwhale">
+    
+    
+      <meta name="description" content="a.说在前面不作就不会死 人们真应该好好将这句话铭记在心 :) mac本机用的php集成环境一直都是MAMP3.0 手欠今天突然想升级到3.5（试试新的php7）结果升完级mysql用不了 就连apache的端口都被占用了 苦苦折腾了我两个小时 终于解决该软件导致的mysql error:#2002也希望给许多想安装MAMP的小伙伴安利一下 (〃▽〃) 
+b.重点0x00 install刚刚下载完">
+    
+
+    <meta name="description" content="a.说在前面不作就不会死 人们真应该好好将这句话铭记在心 :) mac本机用的php集成环境一直都是MAMP3.0 手欠今天突然想升级到3.5（试试新的php7）结果升完级mysql用不了 就连apache的端口都被占用了 苦苦折腾了我两个小时 终于解决该软件导致的mysql error:#2002也希望给许多想安装MAMP的小伙伴安利一下 (〃▽〃) 
+b.重点0x00 install刚刚下载完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP集成环境搭建—>令人心碎的MAMP | sixwhale's pages">
+<meta property="og:url" content="http://yoursite.com/2016/01/09/PHP集成环境搭建—>令人心碎的MAMP/index.html">
+<meta property="og:site_name" content="sixwhale's pages">
+<meta property="og:description" content="a.说在前面不作就不会死 人们真应该好好将这句话铭记在心 :) mac本机用的php集成环境一直都是MAMP3.0 手欠今天突然想升级到3.5（试试新的php7）结果升完级mysql用不了 就连apache的端口都被占用了 苦苦折腾了我两个小时 终于解决该软件导致的mysql error:#2002也希望给许多想安装MAMP的小伙伴安利一下 (〃▽〃) 
+b.重点0x00 install刚刚下载完">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUhJkRd/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeU7ZKCG/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUnjK83/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUnk7BI/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUzhhLE/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUzg16r/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FeUzer7p/medish.jpg">
+<meta property="og:updated_time" content="2016-02-16T07:45:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP集成环境搭建—>令人心碎的MAMP | sixwhale's pages">
+<meta name="twitter:description" content="a.说在前面不作就不会死 人们真应该好好将这句话铭记在心 :) mac本机用的php集成环境一直都是MAMP3.0 手欠今天突然想升级到3.5（试试新的php7）结果升完级mysql用不了 就连apache的端口都被占用了 苦苦折腾了我两个小时 终于解决该软件导致的mysql error:#2002也希望给许多想安装MAMP的小伙伴安利一下 (〃▽〃) 
+b.重点0x00 install刚刚下载完">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for sixwhale&#39;s pages"><img src="/images/avatar.jpg" width="80" alt="sixwhale&#39;s pages logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">sixwhale&#39;s pages</a></h1>
+
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          不会写代码的公关不是好黑客_prpr_(ฅ&#39;ω&#39;ฅ)
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">blog</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">me</a></li>
+              
+                
+                <li class="navigation__item"><a href="/blogroll" title="" class="">links</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/sixwha1e" target="_blank">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2016-01-09" class="post-meta__date date">2016-01-09</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              
+            </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">PHP集成环境搭建—&gt;令人心碎的MAMP</h1>
+    </header>
+
+    <section class="post">
+      <h2 id="a-说在前面">a.说在前面</h2><p><strong>不作就不会死</strong> 人们真应该好好将这句话铭记在心 :) mac本机用的php集成环境一直都是MAMP3.0 手欠今天突然想升级到3.5（试试新的php7）结果升完级mysql用不了 就连apache的端口都被占用了 苦苦折腾了我两个小时 终于解决该软件导致的<code>mysql error:#2002</code>也希望给许多想安装MAMP的小伙伴安利一下 (〃▽〃) </p>
+<h2 id="b-重点">b.重点</h2><h4 id="0x00_install">0x00 install</h4><p>刚刚下载完MAMP应该是同时出现这三个应用程序<br><img src="http://pic.yupoo.com/sixwhale_s/FeUhJkRd/medish.jpg" alt=""><br>MAMP和MAMP PRO的区别在于 一个是免费 一个是付费需要注册码<br>这里我们用<strong>PRO</strong><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">注册码：DED4-<span class="number">0</span>A88-<span class="number">3</span>A11-F9FDE</span><br></pre></td></tr></table></figure></p>
+<h4 id="0x01_webserver">0x01 webserver</h4><p><img src="http://pic.yupoo.com/sixwhale_s/FeU7ZKCG/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/FeUnjK83/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/FeUnk7BI/medish.jpg" alt=""></p>
+<ul>
+<li>① 端口初始是8888 但是因为我本身8888端口被占用 应该是之前的环境是apache出现问题 所以改成2222 大家可以不改 随意</li>
+<li>② 这个要全部勾上 如果按照初始状态 你的<code>http://localhost:xxxx(端口号)</code>会被403的</li>
+<li>③ <code>localhost</code>这个建议大家不要改 </li>
+<li>④ 这个就是你本地的根目录 选择你想要的目录 不一定用它默认的 这样你有什么测试代码 也比较方便 (说白了！这个目录里的内容就是你希望你的localhost:xxxx所显示的东西)</li>
+</ul>
+<h4 id="0x02_MySQL">0x02 MySQL</h4><p><strong>按照这个过程就不会出现mysql error：#2002 身边的很多mac用户被困扰好久: (</strong></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/FeUzhhLE/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/FeUzg16r/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/FeUzer7p/medish.jpg" alt=""></p>
+<ul>
+<li>⑤ 点击后进入你的MAMP管理页面 也就是图⑦⑧</li>
+<li>⑥ 三个指示灯代表着你的服务状态</li>
+<li>⑦ phpmyadmin 网页版数据库管理工具</li>
+<li>⑧ 你的MySQL配置</li>
+<li>⑨ 点击⑦后进入phpmyadmin 修改用户权限等信息</li>
+</ul>
+<h5 id="终端进入mysql_命令键入">终端进入mysql 命令键入</h5>  <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">终端键入:cd <span class="regexp">/Applications/M</span>AMP<span class="regexp">/Library/</span>bin<span class="regexp">/./my</span>sql -u (用户名) -p</span><br></pre></td></tr></table></figure>
+<h5 id="之后输入密码即可">之后输入密码即可</h5><h2 id="c-最后">c.最后</h2><h5 id="(´ཀ`」_∠)_心累"><em> (´ཀ`」 ∠) </em> 心累</h5>
+    </section>
+
+    
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'sixwhale'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015-2016 | ❤ <a href="mailto:wjsixwhale@gmail.com">sixwhale </a></span>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+    });
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) {
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500;
+      scrollElem.hide();
+      $(window).scroll(function () {
+        var scrollTop = $(document).scrollTop();
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in
+        }else{
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!--  google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69756007-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258121687'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258121687' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
