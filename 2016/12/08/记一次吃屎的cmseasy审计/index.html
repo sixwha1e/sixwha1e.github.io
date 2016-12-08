@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IiPRa1/11j8Sc.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IkXcUu/medish.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IuEp0d/gv8M8.jpg">
-<meta property="og:updated_time" content="2016-12-08T10:23:01.000Z">
+<meta property="og:updated_time" content="2016-12-08T10:32:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次吃屎的cmseasy审计 | sixwhale's pages">
 <meta name="twitter:description" content="0x00 写在前面最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现cmseasy被x的体无完肤… 我又把 v5.5 看了一遍 于是吃屎 ：）
@@ -205,7 +205,7 @@ classes that you can use:
 <ul>
 <li>验证码这个东西是摆设嘛…?? </li>
 <li><code>front::post(&#39;aid&#39;)</code>完全没有过滤 </li>
-<li>集中看<code>rec_update() -&gt; query_unbuffered() -&gt; query()</code> 正面x 无阻碍</li>
+<li>集中看<strong>lib/inc/table.php</strong>下的<code>rec_update() -&gt; query_unbuffered() -&gt; query()</code> 正面x 无阻碍</li>
 </ul>
 <h2 id="0x02_吃屎的利用">0x02 吃屎的利用</h2><ul>
 <li><strong>case=*</strong> 绑定的是<code>lib/default/</code>目录下的模块文件 例如<code>*_act.php</code></li>
