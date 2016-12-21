@@ -50,7 +50,7 @@
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FhiR8ETW/FCfpw.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj2VVYl/nPDF5.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj3jBDB/WFozM.jpg">
-<meta property="og:updated_time" content="2016-12-21T04:16:34.000Z">
+<meta property="og:updated_time" content="2016-12-21T10:42:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计入门总结 | sixwhale's pages">
 <meta name="twitter:description" content="0x00 简介之前看了seay写的PHP代码审计的书，全部浏览了一遍，作为一个代码审计小白，希望向一些和我一样的小白的人提供一下我的收获，以及一个整体的框架和常见漏洞函数。这也算是这本书的一个学习笔记吧，可以结合我捋顺的思路来看这本书。: )
@@ -214,14 +214,14 @@ classes that you can use:
     </header>
 
     <section class="post">
-      <h1 id="0x00_简介">0x00 简介</h1><p>之前看了seay写的PHP代码审计的书，全部浏览了一遍，作为一个代码审计小白，希望向一些和我一样的小白的人提供一下我的收获，以及一个整体的框架和常见漏洞函数。这也算是这本书的一个学习笔记吧，可以结合我捋顺的思路来看这本书。: )</p>
-<h1 id="0x01_整体">0x01 整体</h1><p>学习代码审计的目标是能够独立完成对一个CMS的代码安全监测。其通用的思路有：</p>
+      <h2 id="0x00_简介">0x00 简介</h2><p>之前看了seay写的PHP代码审计的书，全部浏览了一遍，作为一个代码审计小白，希望向一些和我一样的小白的人提供一下我的收获，以及一个整体的框架和常见漏洞函数。这也算是这本书的一个学习笔记吧，可以结合我捋顺的思路来看这本书。: )</p>
+<h2 id="0x01_整体">0x01 整体</h2><p>学习代码审计的目标是能够独立完成对一个CMS的代码安全监测。其通用的思路有：</p>
 <ul>
 <li>通读全文代码，从功能函数代码开始阅读，例如<code>include</code>文件夹下的<code>common_fun.php</code>，或者有类似关键字的文件。</li>
 <li>看配置文件，带有<code>config</code>关键字的文件，找到mysql.class.php文件的connect()函数，查看在数据库连接时是否出现漏洞。</li>
 <li>继续跟读首页文件,<code>index.php</code>,了解程序运作时调用了哪些函数和文件 以index.php文件作为标线，一层一层去扩展阅读所包含的文件，了解其功能，之后进入其功能文件夹的首页文件，进行扩展阅读。</li>
 </ul>
-<h1 id="0x02_各种洞洞">0x02 各种洞洞</h1><h3 id="a-文件操作漏洞">a.文件操作漏洞</h3><ul>
+<h2 id="0x02_各种洞洞">0x02 各种洞洞</h2><h3 id="a-文件操作漏洞">a.文件操作漏洞</h3><ul>
 <li>能不用文件名参数就不用 尽量不要让用户可控</li>
 <li>平行用户的权限 管理员的权限 操作权限</li>
 <li>禁止传入参数类似于这种 <code>..</code> ,<code>/</code>,<code>\</code> 检查传入的参数,做出限制,停止程序往下执行</li>
@@ -400,7 +400,7 @@ classes that you can use:
 <ul>
 <li><code>windows findfirstfile</code> 利用：<strong>若要搜索12345.txt文件，可使用<code>1&lt;&lt;</code>来代替或者<code>12&lt;&lt;</code>，不可以单独使用一个<code>&quot;&lt;&quot;</code>或<code>&quot;&gt;&quot;</code>，因为单独一个只是代表了一个字符，两个代表多个字符。</strong></li>
 </ul>
-<h1 id="0x03_End">0x03 End</h1><p>自己走上安全这条路既是兴趣也是偶然，选择白盒完全是因为喜欢php，毕竟是初识代码审计，seay的书确实帮了我不少，抱作者大腿<strong>（我是萌妹纸）</strong>，希望这篇文章能够帮助像我一样小白的人，花了两天总结的，如果有什么缺陷也等着大家指出。</p>
+<h2 id="0x03_End">0x03 End</h2><p>自己走上安全这条路既是兴趣也是偶然，选择白盒完全是因为喜欢php，毕竟是初识代码审计，seay的书确实帮了我不少，抱作者大腿<strong>（我是萌妹纸）</strong>，希望这篇文章能够帮助像我一样小白的人，花了两天总结的，如果有什么缺陷也等着大家指出。</p>
 <blockquote>
 <p>不会开发的谈审计都是耍流氓！：)</p>
 </blockquote>
