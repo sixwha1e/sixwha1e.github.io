@@ -50,7 +50,7 @@
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FhiR8ETW/FCfpw.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj2VVYl/nPDF5.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj3jBDB/WFozM.jpg">
-<meta property="og:updated_time" content="2016-12-21T03:24:52.000Z">
+<meta property="og:updated_time" content="2016-12-21T04:12:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计入门总结 | sixwhale's pages">
 <meta name="twitter:description" content="0x00 简介之前看了seay写的PHP代码审计的书，全部浏览了一遍，作为一个代码审计小白，希望向一些和我一样的小白的人提供一下我的收获，以及一个整体的框架和常见漏洞函数。这也算是这本书的一个学习笔记吧，可以结合我捋顺的思路来看这本书。: )
@@ -222,7 +222,7 @@ classes that you can use:
 <li>继续跟读首页文件,<code>index.php</code>,了解程序运作时调用了哪些函数和文件 以index.php文件作为标线，一层一层去扩展阅读所包含的文件，了解其功能，之后进入其功能文件夹的首页文件，进行扩展阅读。</li>
 </ul>
 <h1 id="0x02_各种洞洞">0x02 各种洞洞</h1><h3 id="a-文件操作漏洞">a.文件操作漏洞</h3><ul>
-<li>能不用文件名参数就不用 尽量不要让用户可控</li>
+<li>能不用文件名参数就不用 尽量不要让用户可控</li>
 <li>平行用户的权限 管理员的权限 操作权限</li>
 <li>禁止传入参数类似于这种 <code>..</code> ,<code>/</code>,<code>\</code> 检查传入的参数,做出限制,停止程序往下执行</li>
 </ul>
@@ -245,7 +245,7 @@ classes that you can use:
 <li>英文(.) 反斜杠(/) 截断</li>
 </ul>
 <h4 id="2-文件读取(下载)漏洞：">2.文件读取(下载)漏洞：</h4><p>搜索关键函数:</p>
-<p><code>file_get_contents()</code>,<code>highlight_file()</code>,<code>fopen()</code>,<code>read file()</code>,<code>fread()</code>,<code>fgetss()</code>, <code>fgets()</code>,<code>parse_ini_file()</code>,<code>show_source()</code>,<code>file()</code>等</p>
+<p><code>file_get_contents()</code>,<code>highlight_file()</code>,<code>fopen()</code>,<code>read file()</code>,<code>fread()</code>,<code>fgetss()</code>, <code>fgets()</code>,<code>parse_ini_file()</code>,<code>show_source()</code>,<code>file()</code>等</p>
 <h4 id="3-文件上传漏洞：">3.文件上传漏洞：</h4><p>搜索关键函数:</p>
 <p><code>move_uploaded_file()</code> 接着看调用这个函数的代码是否存在为限制上传格式或者可以绕过。</p>
 <p>(1) 未过滤或本地过滤：服务器端未过滤，直接上传PHP格式的文件即可利用。</p>
