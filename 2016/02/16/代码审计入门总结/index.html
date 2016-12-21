@@ -50,7 +50,7 @@
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/FhiR8ETW/FCfpw.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj2VVYl/nPDF5.jpg">
 <meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/Fhj3jBDB/WFozM.jpg">
-<meta property="og:updated_time" content="2016-12-21T04:12:00.000Z">
+<meta property="og:updated_time" content="2016-12-21T04:16:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计入门总结 | sixwhale's pages">
 <meta name="twitter:description" content="0x00 简介之前看了seay写的PHP代码审计的书，全部浏览了一遍，作为一个代码审计小白，希望向一些和我一样的小白的人提供一下我的收获，以及一个整体的框架和常见漏洞函数。这也算是这本书的一个学习笔记吧，可以结合我捋顺的思路来看这本书。: )
@@ -231,8 +231,8 @@ classes that you can use:
 <li>一般存在于模块加载，模板加载，cache调用</li>
 <li>包括函数：<code>include()/include_once()</code>，<code>require()/require_once()</code>寻找可控变量</li>
 </ul>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0lf1pS/TpLMf.jpg" alt="p1"></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0leD2e/LzhvW.jpg" alt="p2"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0lf1pS/TpLMf.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0leD2e/LzhvW.jpg" alt=""></p>
 <p>(2) 远程文件包含：</p>
 <ul>
 <li>前提条件：<code>allow_url_include = on</code></li>
@@ -254,7 +254,7 @@ classes that you can use:
 <li>限制不够全面：IIS默认支持解析<code>.asp</code>,<code>.cdx</code>, <code>.asa</code>,<code>.cer</code>等。</li>
 <li>扩展名可绕过：</li>
 </ul>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0GBXiI/hAOJO.jpg" alt="p3"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh0GBXiI/hAOJO.jpg" alt=""></p>
 <p>不被允许的文件格式<code>.php</code>，但是我们可以上传文件名为<code>1.php</code>(注意后面有一个空格)</p>
 <p>(3) 文件头 <code>content-type</code>验证绕过：</p>
 <ul>
@@ -271,7 +271,7 @@ classes that you can use:
 <li><code>unlink()</code>利用回溯变量的方式*   老版本下的<code>session_destroy()</code>，可以删除文件，现已基本被修复。</li>
 </ul>
 <p><strong>Metinfo的任意文件删除漏洞：</strong></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9mRObL/sziBL.jpg" alt="p4"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9mRObL/sziBL.jpg" alt=""></p>
 <p><code>$action = delete</code>即可删除<code>.sql</code>的文件，如果文件不是<code>sql</code>直接删除提交的文件名</p>
 <p><code>target.com/recovery.php?&amp;amp;action=delete&amp;amp;filename=../../index.php</code></p>
 <h3 id="b-代码执行漏洞">b.代码执行漏洞</h3><h4 id="1-代码执行函数：">1.代码执行函数：</h4><p>搜索关键函数：<code>eval()</code>, <code>assert()</code>, <code>preg_replace()</code>, <code>call_user_func()</code>, <code>call_user_func_array()</code>, <code>array_map()</code></p>
@@ -280,14 +280,14 @@ classes that you can use:
 <p><strong>当$pattern处存在e修饰符时，$replacement 会被当做php代码执行。</strong></p>
 <p>(2)<code>mixed call_user_func( callable $callbank [ , mixed $parameter [ , mixed $…)</code>：</p>
 <p><strong>第一个参数为回调函数，第二个参数是回调函数的参数</strong></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9Czab3/BMpAw.jpg" alt="p5"></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9EXw3N/EoH78.jpg" alt="p6"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9Czab3/BMpAw.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fh9EXw3N/EoH78.jpg" alt=""></p>
 <p>(3)<code>eval()</code>和<code>assert()</code>：</p>
 <p><strong>当assert()的参数为字符串时 可执行PHP代码</strong></p>
 <p>【区分】：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">eval(&#34; phpinfo(); &#34;);&#12304;&#8730;&#12305; eval(&#34; phpinfo() &#34;);&#12304;X&#12305;&#10;assert(&#34; phpinfo(); &#34;);&#12304;&#8730;&#12305; assert(&#34; phpinfo() &#34;);&#12304;&#8730;&#12305;</span><br></pre></td></tr></table></figure></p>
 <h4 id="2-动态函数执行：">2.动态函数执行：</h4><p>动态函数后门：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#60;?php $_GET[&#39;a&#39;]($_GET[&#39;b&#39;]); ?&#62;</span><br></pre></td></tr></table></figure>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fha23yiX/Y2aE4.jpg" alt="p7"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fha23yiX/Y2aE4.jpg" alt=""></p>
 <h4 id="3-命令执行函数：">3.命令执行函数：</h4><p>搜索关键函数：<code>system()</code>, <code>exec()</code>, <code>shell_exec()</code>, <code>passthru()</code> ,<code>pcntl_exec()</code>, <code>popen()</code>,<code>proc_open()</code></p>
 <p>(1) <code>popen</code>和<code>proc_open()</code>：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#60;?php &#10;popen( &#39;whoami &#38;gt;&#38;gt; /Users/bingdaojueai/Desktop/1.txt&#39;, &#39;r&#39; ); &#10;?&#62;</span><br></pre></td></tr></table></figure>
@@ -304,8 +304,8 @@ classes that you can use:
 <li><code>void parse_str( string $str , array &amp;amp;$arr )</code></li>
 <li><code>bool import_request_variables( string $type , string $prefix )</code></li>
 </ul>
-<h4 id="2-$$变量覆盖：">2.$$变量覆盖：</h4><p><img src="http://pic.yupoo.com/sixwhale_s/Fhan1t4d/nkMER.jpg" alt="p8"></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fhan1gVu/pp4mQ.jpg" alt="p9"></p>
+<h4 id="2-$$变量覆盖：">2.$$变量覆盖：</h4><p><img src="http://pic.yupoo.com/sixwhale_s/Fhan1t4d/nkMER.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fhan1gVu/pp4mQ.jpg" alt=""></p>
 <h3 id="d-逻辑漏洞">d.逻辑漏洞</h3><p>需要思考的问题：</p>
 <ul>
 <li>程序是否可以重复安装</li>
@@ -314,8 +314,8 @@ classes that you can use:
 <li>cookie是否可以预测 验证存在绕过</li>
 </ul>
 <h4 id="1-等于与存在判断绕过：">1.等于与存在判断绕过：</h4><p>(1) <code>in_array()</code>: 比较之前会自动转换类型</p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fhi5ztVI/e1U0e.jpg" alt="p10"></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fhi5A3qe/j9VyT.jpg" alt="p11"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fhi5ztVI/e1U0e.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fhi5A3qe/j9VyT.jpg" alt=""></p>
 <p>(2)<code>is_numeric()</code>:当传入参数为hex时 直接通过并返回true 并且MYSQL可以直接使用hex编码代替字符串明文 可以二次注入 并且可能造成XSS漏洞</p>
 <p>(3)双等于<code>==</code>和三等于<code>===</code>：</p>
 <ul>
@@ -337,8 +337,8 @@ classes that you can use:
 </li>
 </ul>
 <p><strong>可能导致漏洞函数：</strong> <code>str_replace()</code></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/FhitWJuY/127lCv.jpg" alt="p12"><br><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="variable">$a</span> = addslashes($_GET[<span class="string">'a'</span>]);</span><br><span class="line"><span class="variable">$b</span> = addslashes($_GET[<span class="string">'b'</span>]);</span><br><span class="line">echo <span class="string">"$a&lt;br/&gt;$b&lt;br/&gt;"</span>;</span><br><span class="line"><span class="variable">$c</span> = str_replace(<span class="variable">$a</span>,<span class="string">''</span>,<span class="variable">$b</span>);</span><br><span class="line">echo trim(<span class="variable">$c</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fhiwbo5i/biOQO.jpg" alt="p13"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/FhitWJuY/127lCv.jpg" alt=""><br><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="variable">$a</span> = addslashes($_GET[<span class="string">'a'</span>]);</span><br><span class="line"><span class="variable">$b</span> = addslashes($_GET[<span class="string">'b'</span>]);</span><br><span class="line">echo <span class="string">"$a&lt;br/&gt;$b&lt;br/&gt;"</span>;</span><br><span class="line"><span class="variable">$c</span> = str_replace(<span class="variable">$a</span>,<span class="string">''</span>,<span class="variable">$b</span>);</span><br><span class="line">echo trim(<span class="variable">$c</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fhiwbo5i/biOQO.jpg" alt=""></p>
 <h3 id="e-会话认证漏洞">e.会话认证漏洞</h3><ul>
 <li>COOKIE验证：没有使用SESSION验证，将信息直接保存在COOKIE中<ol>
 <li>找到传入sql语句的参数的传递过程 回溯变量到最原始的函数 看它保存在cookie的算法 是否可逆</li>
@@ -353,8 +353,8 @@ classes that you can use:
 <li>业务逻辑复杂度，与二次漏洞触发率 成正比。</li>
 <li>购物车 / 订单 / 引用数据 / 文章编辑 / 草稿 <code>==&amp;gt;</code> SQL注入 / XSS</li>
 </ul>
-<p><img src="http://pic.yupoo.com/sixwhale_s/FhiQ4emt/Ww84O.jpg" alt="p14"></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/FhiR8ETW/FCfpw.jpg" alt="p15"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/FhiQ4emt/Ww84O.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/FhiR8ETW/FCfpw.jpg" alt=""></p>
 <h4 id="2-技巧：">2.技巧：</h4><p>(1) 钻GPC等转义的空子：</p>
 <ul>
 <li>不受GPC保护的<code>$_SERVER</code>变量：<strong>PHP5以后，$_SERVER取到的header不再受GPC影响，就算开启特殊字符也不会被转义，存在注入</strong></li>
@@ -394,9 +394,9 @@ classes that you can use:
 <li>特殊字符未转义：</li>
 </ol>
 </li>
-<li>报错注入：<br><img src="http://pic.yupoo.com/sixwhale_s/Fhj2VVYl/nPDF5.jpg" alt="p16"></li>
+<li>报错注入：<br><img src="http://pic.yupoo.com/sixwhale_s/Fhj2VVYl/nPDF5.jpg" alt=""></li>
 </ul>
-<p><img src="http://pic.yupoo.com/sixwhale_s/Fhj3jBDB/WFozM.jpg" alt="p17"></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/Fhj3jBDB/WFozM.jpg" alt=""></p>
 <ul>
 <li><code>windows findfirstfile</code> 利用：<strong>若要搜索12345.txt文件，可使用<code>1&lt;&lt;</code>来代替或者<code>12&lt;&lt;</code>，不可以单独使用一个<code>&quot;&lt;&quot;</code>或<code>&quot;&gt;&quot;</code>，因为单独一个只是代表了一个字符，两个代表多个字符。</strong></li>
 </ul>
