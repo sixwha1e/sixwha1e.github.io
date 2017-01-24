@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      粘连字符验证码的分割识别 | sixwhale&#39;s pages
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="sixwhale">
+    
+    
+      <meta name="description" content="###0x00机器识别验证码越来越普遍  目前的现状就是某些网站为了安全而提高验证码的复杂度致使人眼也很难去分辨 
+目前的网上的验证码大致分为几类：
+
+纯数字 or 纯字母
+ 
+
+数字 + 字母
+ 
+
+随机噪音背景 + 数字 + 字母 
+ 
+
+粘连字符 + 随机噪音背景 + 字体造型扭曲
+ 
+
+
+前三类属于简单验证码 按照正常的二值化灰度处理图片 用python自带的库pytesseract就可以">
+    
+
+    <meta name="description" content="###0x00机器识别验证码越来越普遍  目前的现状就是某些网站为了安全而提高验证码的复杂度致使人眼也很难去分辨 
+目前的网上的验证码大致分为几类：
+
+纯数字 or 纯字母
+ 
+
+数字 + 字母
+ 
+
+随机噪音背景 + 数字 + 字母 
+ 
+
+粘连字符 + 随机噪音背景 + 字体造型扭曲
+ 
+
+
+前三类属于简单验证码 按照正常的二值化灰度处理图片 用python自带的库pytesseract就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="粘连字符验证码的分割识别 | sixwhale's pages">
+<meta property="og:url" content="http://yoursite.com/2017/01/24/粘连字符验证码的分割识别/index.html">
+<meta property="og:site_name" content="sixwhale's pages">
+<meta property="og:description" content="###0x00机器识别验证码越来越普遍  目前的现状就是某些网站为了安全而提高验证码的复杂度致使人眼也很难去分辨 
+目前的网上的验证码大致分为几类：
+
+纯数字 or 纯字母
+ 
+
+数字 + 字母
+ 
+
+随机噪音背景 + 数字 + 字母 
+ 
+
+粘连字符 + 随机噪音背景 + 字体造型扭曲
+ 
+
+
+前三类属于简单验证码 按照正常的二值化灰度处理图片 用python自带的库pytesseract就可以">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRaGlTh/122nLQ.gif">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRd5cO7/small.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaReeRBf/thumb.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaReYORV/B5br4.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRgdX5o/Xg8un.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRgGLCC/46YC6.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRp8gyq/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRqaefb/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRr7eni/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRxCeI2/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRxCB5b/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRwgpEn/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRC7GnM/LVqub.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRJh7sE/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRJhuME/medish.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRLWO0C/small.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/GaRLYBaK/small.jpg">
+<meta property="og:updated_time" content="2017-01-24T10:45:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="粘连字符验证码的分割识别 | sixwhale's pages">
+<meta name="twitter:description" content="###0x00机器识别验证码越来越普遍  目前的现状就是某些网站为了安全而提高验证码的复杂度致使人眼也很难去分辨 
+目前的网上的验证码大致分为几类：
+
+纯数字 or 纯字母
+ 
+
+数字 + 字母
+ 
+
+随机噪音背景 + 数字 + 字母 
+ 
+
+粘连字符 + 随机噪音背景 + 字体造型扭曲
+ 
+
+
+前三类属于简单验证码 按照正常的二值化灰度处理图片 用python自带的库pytesseract就可以">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for sixwhale&#39;s pages"><img src="/images/avatar.jpg" width="80" alt="sixwhale&#39;s pages logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">sixwhale&#39;s pages</a></h1>
+
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          不会画画儿的程序媛不是好黑客_prpr_(ฅ&#39;ω&#39;ฅ)
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">blog</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">me</a></li>
+              
+                
+                <li class="navigation__item"><a href="/blogroll" title="" class="">links</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/sixwha1e" target="_blank">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2017-01-24" class="post-meta__date date">2017-01-24</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              
+            </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">粘连字符验证码的分割识别</h1>
+    </header>
+
+    <section class="post">
+      <p>###0x00<br>机器识别验证码越来越普遍  目前的现状就是某些网站为了安全而提高验证码的复杂度致使人眼也很难去分辨 </p>
+<p>目前的网上的验证码大致分为几类：</p>
+<ol>
+<li><p>纯数字 or 纯字母</p>
+<p> <img src="http://pic.yupoo.com/sixwhale_s/GaRaGlTh/122nLQ.gif" alt=""></p>
+</li>
+<li><p>数字 + 字母</p>
+<p> <img src="http://pic.yupoo.com/sixwhale_s/GaRd5cO7/small.jpg" alt=""></p>
+</li>
+<li><p>随机噪音背景 + 数字 + 字母 </p>
+<p> <img src="http://pic.yupoo.com/sixwhale_s/GaReeRBf/thumb.jpg" alt=""></p>
+</li>
+<li><p>粘连字符 + 随机噪音背景 + 字体造型扭曲</p>
+<p> <img src="http://pic.yupoo.com/sixwhale_s/GaReYORV/B5br4.jpg" alt=""><img src="http://pic.yupoo.com/sixwhale_s/GaRgdX5o/Xg8un.jpg" alt=""><img src="http://pic.yupoo.com/sixwhale_s/GaRgGLCC/46YC6.jpg" alt=""></p>
+</li>
+</ol>
+<p>前三类属于简单验证码 按照正常的二值化灰度处理图片 用python自带的库<code>pytesseract</code>就可以准确识别 识别率应该在90%以上 然而网上大多数的验证码都是这种 基本学校网站的验证码也都属于这类 （个人认为这类验证码完全没有必要采用机器学习…</p>
+<p>###0x01 图片灰度处理<br>这次试验的是CSDN家的验证码 首先介绍一下CSDN家的特点：</p>
+<ul>
+<li>字符不是单一的颜色 单个字符的每个像素点的颜色接近</li>
+<li>噪音背景</li>
+<li>部分粘连</li>
+</ul>
+<p>复杂程度不算太难 但想提高识别率也要经过特殊处理</p>
+<p>网上大部分的文章都是用PIL库自带的函数 <code>Image.open(img).convert(&#39;L&#39;)</code><br>个人认为CSDN家的验证码不适合 这里我用的是提取每个像素点的亮度值<code>HSL</code> 再设置一个阈值（我设置的是127 小于127为黑 大于127为白<br><img src="http://pic.yupoo.com/sixwhale_s/GaRp8gyq/medish.jpg" alt=""><br>原图（经过放大后：<br><img src="http://pic.yupoo.com/sixwhale_s/GaRqaefb/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/GaRr7eni/medish.jpg" alt=""></p>
+<p>###0x02 切割粘连部分图片<br>CSDN的字符属于角度正常 没有造成扭曲 难度降低了一下 原理很简单 只要循环全部像素点 找到黑色点连续长度大于单个字符平均长度 就是我们要的粘连部分<br><img src="http://pic.yupoo.com/sixwhale_s/GaRxCeI2/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/GaRxCB5b/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/GaRwgpEn/medish.jpg" alt=""></p>
+<p>###0x03 分割单一字符（大水滴惯性滴水算法<br>滴水算法的决定因素主要包括：起始点 移动规则以及方向的确定</p>
+<ul>
+<li>(a)中n0表示当前的位置 水滴下一步位置由它左右两个像素点 下方三个像素点 这五个像素点共同决定</li>
+<li>(b)中表示水滴下落规则<br><img src="http://pic.yupoo.com/sixwhale_s/GaRC7GnM/LVqub.jpg" alt=""></li>
+</ul>
+<p><a href="http://blog.csdn.net/yinchuandong2/article/details/40340735" target="_blank" rel="external"><strong>具体内容参考这里</strong></a></p>
+<p>ps：这段代码其实是按照一个java代码改的 = =<br><img src="http://pic.yupoo.com/sixwhale_s/GaRJh7sE/medish.jpg" alt=""><br><img src="http://pic.yupoo.com/sixwhale_s/GaRJhuME/medish.jpg" alt=""><br>切割后的图片：</p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/GaRLWO0C/small.jpg" alt=""><img src="http://pic.yupoo.com/sixwhale_s/GaRLYBaK/small.jpg" alt=""></p>
+<p>单个字符切割好了 剩下的就简单了 可以用<code>pytesseract</code>识别 识别率就已经很高了<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">S <span class="tag">&lt;<span class="title">=</span>&gt;</span> 5 </span><br><span class="line">6 <span class="tag">&lt;<span class="title">=</span>&gt;</span> b</span><br><span class="line">8 <span class="tag">&lt;<span class="title">=</span>&gt;</span> B</span><br><span class="line">Z <span class="tag">&lt;<span class="title">=</span>&gt;</span> 2</span><br><span class="line">O <span class="tag">&lt;<span class="title">=</span>&gt;</span> 0</span><br><span class="line">I <span class="tag">&lt;<span class="title">=</span>&gt;</span> 1</span><br><span class="line">g <span class="tag">&lt;<span class="title">=</span>&gt;</span> 9</span><br><span class="line">3 <span class="tag">&lt;<span class="title">=</span>&gt;</span> E</span><br></pre></td></tr></table></figure></p>
+<p>部分混淆字符也可以用<code>SVM</code>模型 这篇文章说的很详细了-&gt; <a href="https://www.iswin.org/2016/10/15/Simple-CAPTCHA-Recognition-with-Machine-Learning/#comments" target="_blank" rel="external">传送门</a></p>
+<p>###0x04<br>又到了每篇文章的废话烂尾部分<strong>(-в-)</strong><br>这学期没有挂科大学的选修课学分全部修完了 下学期平均一周两节课吧<br>每天很日常 也不是很开心 下半年也不知道何去何从 各位师傅的公司有没有愿意收留我的哈哈 shell也不在了 小姐姐又是自己一个人了 没有总结前一年展望新一年的习惯 说得好像写下那些计划就能一一去实现一样<br>网易云上周婕纶的歌单没有了 <strong><code>花海</code></strong>能循环一整晚 <strong><code>生化危机</code></strong>2月17号上映 妈的这么多年总算结束了 节奏大师突然更新了 一晚刷了70关<strong>_(┐「ε:)</strong> 不知道从什么时候开始 回家也很少和朋友出去聚了<br>还有三天就三十了 祝你们过年好吧 ：） </p>
+
+    </section>
+
+    
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'sixwhale'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015-2017 | ❤ <a href="mailto:wjsixwhale@gmail.com">sixwhale </a></span>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+    });
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) {
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500;
+      scrollElem.hide();
+      $(window).scroll(function () {
+        var scrollTop = $(document).scrollTop();
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in
+        }else{
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!--  google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69756007-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258121687'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258121687' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
