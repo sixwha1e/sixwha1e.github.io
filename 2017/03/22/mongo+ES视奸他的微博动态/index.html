@@ -27,10 +27,10 @@
 <meta property="og:site_name" content="sixwhale's pages">
 <meta property="og:description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
 0x01 数据是基础没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 http://weibo.cn/，理想化的程度是全网爬（想想就可以了">
-<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png">
-<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png">
-<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/46113A17-B24A-43A7-A6CE-6370D4284F9E.png">
-<meta property="og:updated_time" content="2017-03-22T09:20:28.000Z">
+<meta property="og:image" content="http://yoursite.com/images/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png">
+<meta property="og:image" content="http://yoursite.com/images/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png">
+<meta property="og:image" content="http://yoursite.com/images/46113A17-B24A-43A7-A6CE-6370D4284F9E.png">
+<meta property="og:updated_time" content="2017-03-22T09:26:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongo+ES视奸他的微博动态 | sixwhale's pages">
 <meta name="twitter:description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
@@ -195,8 +195,8 @@ classes that you can use:
       <h2 id="0x00_写在前面">0x00 写在前面</h2><p>玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。</p>
 <h2 id="0x01_数据是基础">0x01 数据是基础</h2><p>没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 <code>http://weibo.cn/</code>，理想化的程度是全网爬（想想就可以了 = =，那么最大程度获取数据的方法就是目标化。</p>
 <p>回到开始，我们的需求是特定目标的微博评论与回复，而这些内容90%出现在ta所关注的po主微博下（一个人基本只会给自己关注的博主评论），那么遍历ta的关注列表，只爬这些人的微博评论（这就已经是个不小的工程了。。。</p>
-<h3 id="1-_流程">1. 流程</h3><p><img src="/Users/sixwhale/Desktop/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png" alt=""></p>
-<h3 id="2-_唯一微博标识（commentID）">2. 唯一微博标识（commentID）</h3><p><strong>commentID算是微博评论的唯一标识，后面的参数没有实在意义，利用这个commentID可以直接定位某条微博下的评论: <a href="http://weibo.cn/comment/{commentID}?page=n" target="_blank" rel="external">http://weibo.cn/comment/{commentID}?page=n</a></strong><br><img src="/Users/sixwhale/Desktop/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png" alt=""></p>
+<h3 id="1-_流程">1. 流程</h3><p><img src="/images/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png" alt=""></p>
+<h3 id="2-_唯一微博标识（commentID）">2. 唯一微博标识（commentID）</h3><p><strong>commentID算是微博评论的唯一标识，后面的参数没有实在意义，利用这个commentID可以直接定位某条微博下的评论: <a href="http://weibo.cn/comment/{commentID}?page=n" target="_blank" rel="external">http://weibo.cn/comment/{commentID}?page=n</a></strong><br><img src="/images/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png" alt=""></p>
 <h3 id="3-_数据处理">3. 数据处理</h3><ul>
 <li>redis集合去重</li>
 <li><p>存入mongo的字段是「是否二级评论」，「评论人」，「回复给who」，「评论正文」，「页数」，「commentID」</p>
@@ -218,7 +218,7 @@ classes that you can use:
 </ul>
 <p>同步之前确定27017，9200端口都正常服务</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ mongo-connector  --<span class="keyword">auto</span>-commit-interval=<span class="number">0</span> -m <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">27017</span> -t  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9200</span> -d elastic2_doc_manager  -n db.collection③</span><br></pre></td></tr></table></figure>
-<p>目前数据比较少，但是效果真的不错。。。<br><img src="/Users/sixwhale/Desktop/46113A17-B24A-43A7-A6CE-6370D4284F9E.png" alt=""></p>
+<p>目前数据比较少，但是效果真的不错。。。<br><img src="/images/46113A17-B24A-43A7-A6CE-6370D4284F9E.png" alt=""></p>
 <h2 id="0x04_说明">0x04 说明</h2><p><strong>① 相关性</strong>：</p>
 <ol>
 <li>检索词频率</li>
