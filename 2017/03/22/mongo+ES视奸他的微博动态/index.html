@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      mongo+ES视奸他的微博动态 | sixwhale&#39;s pages
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="sixwhale">
+    
+    
+      <meta name="description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
+0x01 数据是基础没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 http://weibo.cn/，理想化的程度是全网爬（想想就可以了">
+    
+
+    <meta name="description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
+0x01 数据是基础没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 http://weibo.cn/，理想化的程度是全网爬（想想就可以了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongo+ES视奸他的微博动态 | sixwhale's pages">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/mongo+ES视奸他的微博动态/index.html">
+<meta property="og:site_name" content="sixwhale's pages">
+<meta property="og:description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
+0x01 数据是基础没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 http://weibo.cn/，理想化的程度是全网爬（想想就可以了">
+<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png">
+<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png">
+<meta property="og:image" content="http://yoursite.com/Users/sixwhale/Desktop/46113A17-B24A-43A7-A6CE-6370D4284F9E.png">
+<meta property="og:updated_time" content="2017-03-22T09:20:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongo+ES视奸他的微博动态 | sixwhale's pages">
+<meta name="twitter:description" content="0x00 写在前面玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。
+0x01 数据是基础没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 http://weibo.cn/，理想化的程度是全网爬（想想就可以了">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for sixwhale&#39;s pages"><img src="/images/avatar.jpg" width="80" alt="sixwhale&#39;s pages logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">sixwhale&#39;s pages</a></h1>
+
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">
+          不会画画儿的程序媛不是好黑客_prpr_(ฅ&#39;ω&#39;ฅ)
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">blog</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">me</a></li>
+              
+                
+                <li class="navigation__item"><a href="/blogroll" title="" class="">links</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+------------------------------ -->
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/sixwha1e" target="_blank">
+      <i class='icon icon-social-github'></i>
+      <span class="label">GitHub</span>
+    </a>
+  </li>
+
+  </ul>
+</nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+    
+      
+      <div class="post-meta">
+        <time datetime="2017-03-22" class="post-meta__date date">2017-03-22</time> &#8226; 
+
+        <span class="post-meta__tags tags">
+
+            <font class="categories">
+              
+            </font>
+            
+
+        </span>
+      </div>
+      
+
+      <h1 class="post-title">mongo+ES视奸他的微博动态</h1>
+    </header>
+
+    <section class="post">
+      <h2 id="0x00_写在前面">0x00 写在前面</h2><p>玩微博的都知道其实微博的搜索功能比较鸡肋，就算直接输入ID也未必能搜到什么有用的信息。如果想知道一个人在微博上的评论，回复怎么办？这段时间了解一些elasticsearch的知识，既然花了时间就要学以致用。</p>
+<h2 id="0x01_数据是基础">0x01 数据是基础</h2><p>没有数据说什么都是耍流氓，用python爬微博的评论，为了节省开销，我这里利用的是 <code>http://weibo.cn/</code>，理想化的程度是全网爬（想想就可以了 = =，那么最大程度获取数据的方法就是目标化。</p>
+<p>回到开始，我们的需求是特定目标的微博评论与回复，而这些内容90%出现在ta所关注的po主微博下（一个人基本只会给自己关注的博主评论），那么遍历ta的关注列表，只爬这些人的微博评论（这就已经是个不小的工程了。。。</p>
+<h3 id="1-_流程">1. 流程</h3><p><img src="/Users/sixwhale/Desktop/56DF2640-71D7-4F11-B453-6F5AD7FE40FA.png" alt=""></p>
+<h3 id="2-_唯一微博标识（commentID）">2. 唯一微博标识（commentID）</h3><p><strong>commentID算是微博评论的唯一标识，后面的参数没有实在意义，利用这个commentID可以直接定位某条微博下的评论: <a href="http://weibo.cn/comment/{commentID}?page=n" target="_blank" rel="external">http://weibo.cn/comment/{commentID}?page=n</a></strong><br><img src="/Users/sixwhale/Desktop/C4A1C5A5-5719-45D6-B7FF-9EF87FD007DF.png" alt=""></p>
+<h3 id="3-_数据处理">3. 数据处理</h3><ul>
+<li>redis集合去重</li>
+<li><p>存入mongo的字段是「是否二级评论」，「评论人」，「回复给who」，「评论正文」，「页数」，「commentID」</p>
+  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">_id</span>" : <span class="value">ObjectId(<span class="string">"58d1e2f6dce48a0eb14b5f2d"</span>)</span>,</span><br><span class="line">    "<span class="attribute">author</span>" : <span class="value"><span class="string">"six个shell"</span></span>,</span><br><span class="line">    "<span class="attribute">replyTo</span>" : <span class="value"><span class="string">"@sixwhale"</span></span>,</span><br><span class="line">    "<span class="attribute">text</span>" : <span class="value"><span class="string">":这是一条回复测试"</span></span>,</span><br><span class="line">    "<span class="attribute">twice_comment</span>" : <span class="value"><span class="literal">true</span></span>,</span><br><span class="line">    "<span class="attribute">commentID</span>" : <span class="value"><span class="string">"EADXk12c1"</span></span>,</span><br><span class="line">    "<span class="attribute">page</span>" : <span class="value"><span class="number">1</span></span><br><span class="line"></span>&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">_id</span>" : <span class="value">ObjectId(<span class="string">"58d1e4a7dce48a0eebfe559b"</span>)</span>,</span><br><span class="line">    "<span class="attribute">author</span>" : <span class="value"><span class="string">"画小猜"</span></span>,</span><br><span class="line">    "<span class="attribute">replyTo</span>" : <span class="value"><span class="literal">null</span></span>,</span><br><span class="line">    "<span class="attribute">text</span>" : <span class="value"><span class="string">"新年快乐！[干杯]西安娃[doge]"</span></span>,</span><br><span class="line">    "<span class="attribute">twice_comment</span>" : <span class="value"><span class="literal">false</span></span>,</span><br><span class="line">    "<span class="attribute">commentID</span>" : <span class="value"><span class="string">"EoGpxl4a4"</span></span>,</span><br><span class="line">    "<span class="attribute">page</span>" : <span class="value"><span class="number">20</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="0x02_为什么使用ES？">0x02 为什么使用ES？</h2><p>ES即elasticsearch，其实就是利用的ES的模糊匹配。数据库与搜索引擎的区别在于：</p>
+<ul>
+<li>数据库是<strong>「询问这篇文章是否匹配查询条件」</strong></li>
+<li>搜索引擎是<strong>「这篇文章和查询的要求匹配程度如何」</strong>，即「相关性」<strong>①</strong></li>
+</ul>
+<p>ES将每个字段的内容利用分词器分成单独的词，创建一个包含所有不重复词条的排序列表，然后列出每个词条出现在哪个文档，比较匹配程度，即相关性，计算出_score，按照降序全部检索出来。</p>
+<h2 id="0x03_mongoDB_与_ES_数据同步">0x03 mongoDB 与 ES 数据同步</h2><p>我的环境：</p>
+<ul>
+<li>mongo3.4.0</li>
+<li>elasticsearch5.0.0</li>
+<li><strong>mongo-connector</strong> ！！！</li>
+<li>elastic2-doc-manager <strong>②</strong>（文档管理器</li>
+</ul>
+<p>同步之前确定27017，9200端口都正常服务</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ mongo-connector  --<span class="keyword">auto</span>-commit-interval=<span class="number">0</span> -m <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">27017</span> -t  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9200</span> -d elastic2_doc_manager  -n db.collection③</span><br></pre></td></tr></table></figure>
+<p>目前数据比较少，但是效果真的不错。。。<br><img src="/Users/sixwhale/Desktop/46113A17-B24A-43A7-A6CE-6370D4284F9E.png" alt=""></p>
+<h2 id="0x04_说明">0x04 说明</h2><p><strong>① 相关性</strong>：</p>
+<ol>
+<li>检索词频率</li>
+<li>反向文档频率：<strong>每个检索词在索引中出现的频率，频率越高，相关性越低</strong></li>
+<li>字段长度准则：<strong>检索词出现的字段的长度越大，相关性越低</strong></li>
+</ol>
+<p><strong>② elastic2-doc-manager</strong>：</p>
+<ol>
+<li>elasticsearch1.x <code>pip install elastic-doc-manager</code></li>
+<li>elasticsearch2.x <code>pip install elastic2-doc-manager[elastic2]</code></li>
+<li>elasticsearch5.x <code>pip install elastic2-doc-manager[elastic5]</code></li>
+</ol>
+<p><strong>③ db.collection</strong>：<br>指定数据库名db，集合名collection 默认情况是同步全部数据库，具体用法–help吧（= =</p>
+
+    </section>
+
+    
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'sixwhale'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  </article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2015-2017 | ❤ <a href="mailto:wjsixwhale@gmail.com">sixwhale </a></span>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- The main JavaScript file for Casper -->
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    <script src="/js/jquery.imagesloaded.min.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.githubRepoWidget.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+    });
+    </script>
+
+    <!--kill ie6 -->
+    <!--[if IE 6]>
+      <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+    <![endif]-->
+
+    <!--  google analytics -->
+    <script>
+      // add your google analytics code here
+    </script>
+
+    <!-- totop -->
+    <div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+    <a title="back to top"><img style="width:30px;height:30px;" src="/images/totop.png"/></a>
+    </div>
+    <script>
+    (function($) {
+      var upperLimit = 100;
+      var scrollElem = $('#totop');
+      var scrollSpeed = 500;
+      scrollElem.hide();
+      $(window).scroll(function () {
+        var scrollTop = $(document).scrollTop();
+        if ( scrollTop > upperLimit ) {
+          $(scrollElem).stop().fadeTo(300, 1); // fade back in
+        }else{
+          $(scrollElem).stop().fadeTo(300, 0); // fade out
+        }
+      });
+      $(scrollElem).click(function(){
+        $('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+      });
+    })(jQuery);
+    </script>
+
+    <!-- fancybox -->
+    
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript">
+      (function($){
+        $('.fancybox').fancybox();
+      })(jQuery);
+    </script>
+    
+
+    <!--  google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69756007-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258121687'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1258121687' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
