@@ -17,11 +17,11 @@
 ！！！此指南仅针对「拥有阅读过官方文档基础」的同学。
 一、安装和环境配置系统：CentOS 7
 1.安装nodejs：wget https://nodejs.org/dist/v9.9.0/node-v9.9.0.tar.gzyum install g">
-<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4MiYQ/medium.jpg">
-<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4M8xN/medish.jpg">
-<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4N5RD/medium.jpg">
-<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4OKrP/medish.jpg">
-<meta property="og:updated_time" content="2018-04-08T10:05:37.853Z">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4M8xN/NIfh6.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4MiYQ/tbvqA.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4N5RD/sOkSr.jpg">
+<meta property="og:image" content="http://pic.yupoo.com/sixwhale_s/HfE4OKrP/wnGXA.jpg">
+<meta property="og:updated_time" content="2018-04-08T10:15:31.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodeceptJS填坑指南">
 <meta name="twitter:description" content="写在前面：CodeceptJS是一个基于NodeJS验收测试框架，填坑指南只针对目前我遇到的问题提供解决方案和小技巧，按照官方文档的思路进行扩展。
@@ -120,8 +120,8 @@
 </li>
 </ul>
 <p>这样在*_test.js的测试脚本中可以直接调用类，使代码模块化。</p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4MiYQ/medium.jpg" alt=""></p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4M8xN/medish.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4M8xN/NIfh6.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4MiYQ/tbvqA.jpg" alt=""></p>
 <p><strong>注意</strong>：调用的对象默认是创建页面对象的名字后+Page</p>
 <h2 id="4-高级方法：">4.高级方法：</h2><p><strong>Guides → Advanced Usage</strong></p>
 <ul>
@@ -130,11 +130,11 @@
 <h2 id="5-报告：">5.报告：</h2><p><strong>Reference → Reporters</strong><br>测试脚本跑完后，需要导出测试结果的报告，codeceptjs可以利用各种扩展包导出不同形式的报告（XML、HTML等），目前我觉得最好用的就是HTML</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> mochawesome</span><br><span class="line"></span><br><span class="line">npm <span class="keyword">install</span> -<span class="keyword">g</span> mocha-multi</span></span><br></pre></td></tr></table></figure>
 <p>codecept.json：</p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4N5RD/medium.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4N5RD/sOkSr.jpg" alt=""></p>
 <p>运行：</p>
 <figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">codeceptjs <span class="command">run</span> <span class="comment">--reporter mocha-multi</span></span><br></pre></td></tr></table></figure>
 <p>结果：</p>
-<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4OKrP/medish.jpg" alt=""></p>
+<p><img src="http://pic.yupoo.com/sixwhale_s/HfE4OKrP/wnGXA.jpg" alt=""></p>
 <h2 id="6-Helper:">6.Helper:</h2><p><strong>Guides → Helpers</strong></p>
 <p>可以自定义全局方法，可以任意使用NodeJS的标准库，类似于<code>amOnPage()</code></p>
 <p><em>暂时没有引用太多，没有经验 - -</em></p>
